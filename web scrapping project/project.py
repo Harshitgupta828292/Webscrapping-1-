@@ -1,4 +1,4 @@
-import os
+
 import time
 import pandas as pd
 from selenium import webdriver
@@ -35,7 +35,7 @@ all_products = driver.find_elements(By.XPATH, "//div[@data-component-type='s-sea
 for product in all_products:
     # Extract laptop name
     try:
-        name = product.find_element(By.XPATH, ".//span[@class='a-size-medium a-color-base a-text-normal']")
+        name = product.find_element(By.XPATH, ".//span[contains(text(),'Dell')]")
         laptop_names.append(name.text)
     except:
         laptop_names.append("N/A")
@@ -59,23 +59,9 @@ print(f"Total Laptops Found: {len(laptop_names)}")
 print(f"Total Prices Found: {len(laptop_prices)}")
 print(f"Total Reviews Found: {len(laptop_reviews)}")
 
-# Create DataFrame
-df = pd.DataFrame({
-    "Laptop Name": laptop_names,
-    "Price": laptop_prices,
-    "Review Count": laptop_reviews
-})
-
-# Ensure the "Learnerea" folder exists
-save_folder = r"C:\Users\Harshitramji11\Downloads\Learnerea"
-if not os.path.exists(save_folder):
-    os.makedirs(save_folder)
-
-# Save the DataFrame as an Excel file
-save_path = os.path.join(save_folder, "Tables.xlsx")
+# in these i use the python library called pandas to save the file to the excel sheet 
+df=pd.DataFrame(zip(laptop_names,laptop_prices,laptop_reviews),columns=['laptop_names','laptop_prices','laptop_reviews'])
+save_path=(r"C:\Users\Harshitramji11\Downloads\Learnerea\live_laptop.xlsx")
 df.to_excel(save_path, index=False, engine='openpyxl')
-
 print(f"Excel file saved successfully at: {save_path}")
-
-# Close the browser
 driver.quit()
