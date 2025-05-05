@@ -1,5 +1,7 @@
-I made that project to scrap the webside and fetch the data 
-from the website and transfer in to excel sheet
-TECHSTACK-
-1-selenium
-2-pandas 
+<h1>web scrapping </h1>
+<p>I made this project based on automation where we see in this project we extract the date from amazon website and transfer to excel sheet by the use of pandas library </p>
+ <ul>Tkinter</ul>
+ <ul>pandas</ul>
+ <ul>Selenium</ul> 
+ 
+ 
